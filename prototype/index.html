@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JL & D Tracker - Inventory Management</title>
+<link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen" x-data="inventoryApp()" x-cloak>
+        <!-- Header -->
+        <header class="bg-indigo-700 text-white shadow-lg">
+            <div class="container mx-auto px-4 py-6">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="package" class="w-8 h-8"></i>
+                        <h1 class="text-2xl font-bold">JL & D Tracker</h1>
+</div>
+                    <p class="text-indigo-200">JL & D Enterprises Motor Parts</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Add Product Form -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">Add New Product</h2>
+                    <form @submit.prevent="addProduct" class="space-y-4">
+                        <div>
+                            <label for="productName" class="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+                            <select id="productName" x-model="newProduct.name" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="" disabled selected>Select a product</option>
+                                <option value="Front motorcycle tire">Front motorcycle tire</option>
+                                <option value="Rear motorcycle tire">Rear motorcycle tire</option>
+                                <option value="Inner tube (tire tube)">Inner tube (tire tube)</option>
+                                <option value="Tire valve stem">Tire valve stem</option>
+                                <option value="Tire repair plug kit">Tire repair plug kit</option>
+                                <option value="Motorcycle rim / wheel">Motorcycle rim / wheel</option>
+                                <option value="Wheel hub">Wheel hub</option>
+                                <option value="Spokes">Spokes</option>
+                                <option value="Brake disc / rotor">Brake disc / rotor</option>
+                                <option value="Brake pads">Brake pads</option>
+                                <option value="Brake caliper">Brake caliper</option>
+                                <option value="Brake fluid reservoir">Brake fluid reservoir</option>
+                                <option value="Brake line / brake hose">Brake line / brake hose</option>
+                                <option value="Front fork / suspension fork">Front fork / suspension fork</option>
+                                <option value="Rear shock absorber / suspension">Rear shock absorber / suspension</option>
+                                <option value="Swing arm">Swing arm</option>
+                                <option value="Triple clamp / yoke">Triple clamp / yoke</option>
+                                <option value="Frame / subframe">Frame / subframe</option>
+                                <option value="Handlebar">Handlebar</option>
+                                <option value="Handlebar grips">Handlebar grips</option>
+                                <option value="Clutch lever">Clutch lever</option>
+                                <option value="Brake lever">Brake lever</option>
+                                <option value="Throttle cable / throttle tube">Throttle cable / throttle tube</option>
+                                <option value="Foot pegs">Foot pegs</option>
+                                <option value="Kickstand / side stand">Kickstand / side stand</option>
+                                <option value="Sissy bar / passenger backrest">Sissy bar / passenger backrest</option>
+                                <option value="Pannier / side luggage box">Pannier / side luggage box</option>
+                                <option value="Top box / rear trunk">Top box / rear trunk</option>
+                                <option value="Motorcycle cover">Motorcycle cover</option>
+                                <option value="Tank bag">Tank bag</option>
+                                <option value="Tail bag">Tail bag</option>
+                                <option value="Chain">Chain</option>
+                                <option value="Sprocket (front / rear)">Sprocket (front / rear)</option>
+                                <option value="Chain lube">Chain lube</option>
+                                <option value="Chain cleaner">Chain cleaner</option>
+                                <option value="Air filter">Air filter</option>
+                                <option value="Fuel filter">Fuel filter</option>
+                                <option value="Spark plug">Spark plug</option>
+                                <option value="Carburetor (or Fuel Injector)">Carburetor (or Fuel Injector)</option>
+                                <option value="Engine oil">Engine oil</option>
+                                <option value="Transmission / gearbox oil">Transmission / gearbox oil</option>
+                                <option value="Oil filter">Oil filter</option>
+                                <option value="Coolant / Radiator fluid">Coolant / Radiator fluid</option>
+                                <option value="Radiator guard">Radiator guard</option>
+                                <option value="Exhaust / muffler">Exhaust / muffler</option>
+                                <option value="Engine guard / crash bars">Engine guard / crash bars</option>
+                                <option value="Skid plate / bash plate">Skid plate / bash plate</option>
+                                <option value="Frame sliders">Frame sliders</option>
+                                <option value="Headlight / Main light">Headlight / Main light</option>
+                                <option value="Auxiliary LED lights / fog lamps">Auxiliary LED lights / fog lamps</option>
+                                <option value="Mirrors">Mirrors</option>
+                                <option value="Horn">Horn</option>
+                                <option value="Speedometer / Tachometer / Gauge cluster">Speedometer / Tachometer / Gauge cluster</option>
+                                <option value="Battery / Motorcycle battery">Battery / Motorcycle battery</option>
+                                <option value="Regulator / Rectifier">Regulator / Rectifier</option>
+                                <option value="Ignition coil / CDI / ECU">Ignition coil / CDI / ECU</option>
+                                <option value="Wiring harness / cables">Wiring harness / cables</option>
+                                <option value="Helmet">Helmet</option>
+                                <option value="Riding gloves">Riding gloves</option>
+                                <option value="Jacket (motorcycle gear)">Jacket (motorcycle gear)</option>
+                                <option value="Motorcycle boots">Motorcycle boots</option>
+                                <option value="Leg guard / crash guard">Leg guard / crash guard</option>
+                                <option value="Disc brake lock / chain lock">Disc brake lock / chain lock</option>
+                                <option value="Helmet lock">Helmet lock</option>
+                                <option value="Tool kit / mini toolkit">Tool kit / mini toolkit</option>
+                                <option value="GPS mount / phone holder">GPS mount / phone holder</option>
+                                <option value="Heated grips">Heated grips</option>
+                                <option value="Motorcycle charger / USB charger (12V)">Motorcycle charger / USB charger (12V)</option>
+                                <option value="First aid kit (motorcycle)">First aid kit (motorcycle)</option>
+                                <option value="Tank protector / tank pad">Tank protector / tank pad</option>
+                            </select>
+</div>
+                        <div>
+                            <label for="brand" class="block text-sm font-medium text-gray-700 mb-1">Brand</label>
+                            <select id="brand" x-model="newProduct.brand" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="" disabled selected>Select a brand</option>
+                                <option value="Honda">Honda</option>
+                                <option value="Yamaha">Yamaha</option>
+                                <option value="Kawasaki">Kawasaki</option>
+                                <option value="Suzuki">Suzuki</option>
+                                <option value="Rusi">Rusi</option>
+                                <option value="UMA Racing">UMA Racing</option>
+                                <option value="OKM Racing">OKM Racing</option>
+                                <option value="Okimura">Okimura</option>
+                                <option value="NAMKAI">NAMKAI</option>
+                                <option value="Apple Gaskets">Apple Gaskets</option>
+                                <option value="Tsubaki">Tsubaki</option>
+                                <option value="Other">Other (specify below)</option>
+                            </select>
+                        </div>
+                        <div x-show="newProduct.brand === 'Other'" class="mt-2">
+                            <input type="text" x-model="newProduct.customBrand" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter custom brand name">
+                        </div>
+<div>
+                            <label for="quantity" class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                            <input type="number" id="quantity" x-model.number="newProduct.quantity" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter quantity">
+                        </div>
+                        
+                        <div>
+                            <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Price (₱)</label>
+                            <input type="number" id="price" x-model.number="newProduct.price" min="0" step="0.01" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter price">
+                        </div>
+                        
+                        <div>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" x-model="newProduct.inStock" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <span class="ml-2 text-sm text-gray-700">In Stock</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 flex items-center justify-center">
+                            <i data-feather="plus" class="w-4 h-4 mr-2"></i>
+                            Add Product
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Inventory List -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-semibold text-gray-800">Current Inventory</h2>
+                            <div class="relative">
+                                <input type="text" x-model="searchTerm" placeholder="Search products..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                <i data-feather="search" class="absolute left-3 top-2.5 text-gray-400"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Brand</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qty</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <template x-for="(product, index) in filteredProducts" :key="index">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" x-text="product.name"></td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="product.brand || 'N/A'"></td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="product.quantity"></td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="product.price ? '₱' + product.price.toFixed(2) : 'N/A'"></td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span x-bind:class="{'bg-green-100 text-green-800': product.inStock, 'bg-red-100 text-red-800': !product.inStock}" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" x-text="product.inStock ? 'In Stock' : 'Out of Stock'"></span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <div class="flex space-x-2">
+                                                    <button @click="editProduct(index)" class="text-indigo-600 hover:text-indigo-900">
+                                                        <i data-feather="edit" class="w-4 h-4"></i>
+                                                    </button>
+                                                    <button @click="deleteProduct(index)" class="text-red-600 hover:text-red-900">
+                                                        <i data-feather="trash-2" class="w-4 h-4"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                    <tr x-show="products.length === 0">
+                                        <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">No products in inventory. Add some using the form.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Card -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-indigo-100 text-indigo-600">
+                                    <i data-feather="package" class="w-6 h-6"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-500">Total Items</p>
+                                    <p class="text-2xl font-semibold text-gray-900" x-text="products.length"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-green-100 text-green-600">
+                                    <i data-feather="check-circle" class="w-6 h-6"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-500">In Stock</p>
+                                    <p class="text-2xl font-semibold text-gray-900" x-text="products.filter(p => p.inStock).length"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-red-100 text-red-600">
+                                    <i data-feather="alert-circle" class="w-6 h-6"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-500">Out of Stock</p>
+                                    <p class="text-2xl font-semibold text-gray-900" x-text="products.filter(p => !p.inStock).length"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Edit Modal -->
+        <div x-show="showEditModal" class="fixed inset-0 overflow-y-auto z-50" style="display: none;">
+            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                    <div class="absolute inset-0 bg-gray-500 opacity-75" @click="showEditModal = false"></div>
+                </div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                    <div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Edit Product</h3>
+                        <div class="mt-2 space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Product Name</label>
+                                <p class="mt-1 text-sm text-gray-900" x-text="editedProduct.name"></p>
+                            </div>
+                            <div>
+                                <label for="editBrand" class="block text-sm font-medium text-gray-700">Brand</label>
+                                <input type="text" id="editBrand" x-model="editedProduct.brand" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="editQuantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+                                <input type="number" id="editQuantity" x-model.number="editedProduct.quantity" min="0" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="editPrice" class="block text-sm font-medium text-gray-700">Price (₱)</label>
+                                <input type="number" id="editPrice" x-model.number="editedProduct.price" min="0" step="0.01" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="editInStock" x-model="editedProduct.inStock" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="editInStock" class="ml-2 block text-sm text-gray-700">In Stock</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+                        <button type="button" @click="updateProduct" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm">
+                            Save Changes
+                        </button>
+                        <button type="button" @click="showEditModal = false" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 JL & D Enterprises. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
