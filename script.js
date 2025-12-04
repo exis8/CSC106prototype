@@ -22,7 +22,49 @@ function inventoryApp() {
                 quantity: 0, 
                 price: 1200, 
                 inStock: false 
-            }
+            },
+            { 
+                name: "Break fluid reservoir", 
+                brand: "Tsubaki", 
+                quantity: 25, 
+                price: 250, 
+                inStock: true 
+            },
+            { 
+                name: "Mirror set", 
+                brand: "Honda", 
+                quantity: 15, 
+                price: 380, 
+                inStock: true 
+            },
+            { 
+                name: "ignition coil", 
+                brand: "Yamaha", 
+                quantity: 10, 
+                price: 120, 
+                inStock: true 
+            },
+            { 
+                name: "Oil filter", 
+                brand: "OKM Racing", 
+                quantity: 18    , 
+                price: 55, 
+                inStock: true 
+            },
+            { 
+                name: "Swing arm ", 
+                brand: "Suzuki", 
+                quantity: 12, 
+                price: 220, 
+                inStock: true 
+            },
+            { 
+                name: "Spark plug", 
+                brand: "Kawasaki", 
+                quantity: 0, 
+                price: 180, 
+                inStock: false 
+            },
         ],
         newProduct: {
             name: "",
@@ -144,4 +186,5 @@ document.addEventListener('DOMContentLoaded', function() {
             app.saveToLocalStorage();
         }
     });
+
 });
