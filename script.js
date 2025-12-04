@@ -6,21 +6,21 @@ function inventoryApp() {
                 name: "Front motorcycle tire", 
                 brand: "Dunlop", 
                 quantity: 15, 
-                price: 3500, 
+                price: 500, 
                 inStock: true 
             },
             { 
                 name: "Rear motorcycle tire", 
                 brand: "Michelin", 
                 quantity: 10, 
-                price: 3800, 
+                price: 600, 
                 inStock: true 
             },
             { 
                 name: "Brake pads", 
                 brand: "EBC", 
                 quantity: 0, 
-                price: 1200, 
+                price: 120,
                 inStock: false 
             },
             { 
@@ -188,3 +188,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
